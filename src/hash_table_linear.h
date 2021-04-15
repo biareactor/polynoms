@@ -5,11 +5,13 @@
 
 class HashTabLin : public BaseTable
 {
-    Data* Tab[1000];
+    static const size_t SIZE = 1000;
+    static const size_t STEP = 7;
+    Data* Tab[SIZE];
 public:
     HashTabLin()
     {
-        for (int i = 0; i < 1000; i++)
+        for (int i = 0; i < SIZE; i++)
             Tab[i] = nullptr;
     }
     ~HashTabLin();

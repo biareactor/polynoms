@@ -2,7 +2,7 @@
 
 hash_table_on_lists::~hash_table_on_lists()
 {
-	for (int i = 0; i < 1000; i++)
+	for (int i = 0; i < SIZE; i++)
 	{
 		while (Tab[i] != nullptr)
 		{
@@ -93,7 +93,7 @@ void hash_table_on_lists::Print()
 	int k = 0;
 	link_t* p;
 	std::cout << "\tPRINTING HASH TABLE" << std::endl;
-	for (int i = 0; i < 1000; i++)
+	for (int i = 0; i < SIZE; i++)
 	{
 		p = Tab[i];
 		while (p != nullptr)

@@ -16,12 +16,13 @@ struct link_t
 
 class hash_table_on_lists : public BaseTable
 {
-	link_t* Tab[1000];
+  static const size_t SIZE = 1000;
+	link_t* Tab[SIZE];
 
 public:
 	hash_table_on_lists()
 	{
-		for (int i = 0; i < 1000; i++)
+		for (int i = 0; i < SIZE; i++)
 			Tab[i] = nullptr;
 
 	}

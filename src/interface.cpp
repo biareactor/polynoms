@@ -58,17 +58,17 @@ void Interface::exceptionHandling(int code)
 {
 	switch (code)
 	{
-	case 1: cout << "В таблице пусто" << endl; break;
-	case 2: cout << "Нет такого ключа" << endl; break;
-	case 3: cout << "Уже есть объект с таким ключом" << endl; break;
-	case 4: cout << "Неверный ключ" << endl; break;
-	case 5: cout << "Нет места" << endl; break;
-	case 6: cout << "Неверная степень" << endl; break;
-	case 7: cout << "Несовпадение степеней мономов" << endl; break;
-	case 8: cout << "Полином нельзя проинтегрировать" << endl; break;
-	case 9: cout << "Полином введен некорректно" << endl; break;
-	case 10: cout << "Имя должно быть одним словом" << endl; break;
-	case 11: cout << "Имя только из латинских строчных букв" << endl; break;
+	case 1: cout << "\n\nВ таблице пусто" << endl; break;
+	case 2: cout << "\n\nНет такого ключа" << endl; break;
+	case 3: cout << "\n\nУже есть объект с таким ключом" << endl; break;
+	case 4: cout << "\n\nНеверный ключ" << endl; break;
+	case 5: cout << "\n\nНет места" << endl; break;
+	case 6: cout << "\n\nНеверная степень" << endl; break;
+	case 7: cout << "\n\nНесовпадение степеней мономов" << endl; break;
+	case 8: cout << "\n\nПолином нельзя проинтегрировать" << endl; break;
+	case 9: cout << "\n\nПолином введен некорректно" << endl; break;
+	case 10: cout << "\n\nИмя должно быть одним словом" << endl; break;
+	case 11: cout << "\n\nИмя только из латинских строчных букв" << endl; break;
 	}
 }
 
@@ -89,9 +89,8 @@ string Interface::controlKey(const string& key)
 		}
 	}
 	if (count != 1)
-		throw 10;//
+		throw 10;
 	return res;
-	//здесь что-то будет
 }
 
 string Interface::controlPolynom(const string& str)
@@ -194,7 +193,6 @@ bool Interface::isCorrect(string str)
 	}
 	if ((str[length - 1] == '-') || (str[length - 1] == '+'))
 		return false;
-	//str.erase(length);
 	return true;
 }
 
@@ -206,7 +204,6 @@ int Interface::inputControl(string left_board, string right_board, void (*print)
 	{
 		flag = false;
 		print(str);
-		//cin >> number;
 		getline(cin, number);
 		system("cls");
 		if ((number > right_board) || (number < left_board) || (number.length() != 1))
@@ -239,8 +236,6 @@ void Interface::Menu()
 	int code;
 	do
 	{
-		//cout << "----------------------Меню----------------------" << endl;
-		//cout << "  Для выбора, введите соответствующую клавишу." << endl;
 		code = inputControl("1", "6", printMenuList, "---------------------------Меню---------------------------\n  Для выбора введите соответствующую клавишу.\n");
 		switch (code)
 		{
@@ -451,8 +446,10 @@ void Interface::calPol()
 		cout << "Арифметическое выражение должно содержать только следующие операции: +,-,*" << endl;
 		cout << "Также допускаются скобки" << endl;
 		cout << "Пример: a+b*(c+d)" << endl;
+    cout << "Важно, между коэффицентом и переменной '*' не ставится" << endl;
+    cout << "Пример: new=a+0.5b" << endl;
 		cout << "a,b,c,d - имена полиномов, имеющихся в таблице" << endl;
-		cout << "Если ты здесь по ошибке введи !" << endl;
+		cout << "Для выхода введите '!'" << endl;
 		cout << "Введите арифметическое выражение:" << endl;
 		try 
 		{
@@ -478,7 +475,6 @@ void Interface::calPol()
 				throw "Error";
 			TPostfix p(infix);
 			post = p;
-			//post = TPostfix(infix);
 		}
 		catch (int i)
 		{

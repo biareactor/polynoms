@@ -2,7 +2,7 @@
 
 ordered_line_table::~ordered_line_table()
 {
-	for (int i = 0; i < 1000; i++)
+	for (int i = 0; i < SIZE; i++)
 		if (Tab[i] != nullptr)
 			delete Tab[i];
 }
@@ -20,7 +20,6 @@ Data* ordered_line_table::Find(const string& key)
 			right = midd - 1;
 	}
 	return nullptr;
-	//throw 2;
 }
 void ordered_line_table::Insert(const Data& data)
 {

@@ -3,7 +3,7 @@
 
 bool TPostfix::isCorrect(string str)
 {
-  string unacceptable = "!@#^&.,<>{}[]|=_?";
+  string unacceptable = "!@#^&,<>{}[]|=_?";
   int count = 0, countOperation = 0, length = str.length();
   if ((operands.find(str[0]) != string::npos) || (operands.find(str[length - 1]) != string::npos))
     return false;
@@ -30,20 +30,19 @@ bool TPostfix::isCorrect(string str)
 string TPostfix::ToPostfix()
 {
   TStack<char> opStack(MaxStackSize);
-  string tmp = "+-*/()";  
+  string tmp = "+-.*/()";  
   int length = infix.length();
   int check = -1;
   for (int i = 0; i < length; i++)
   {
       if (tmp.find(infix[i]) == string::npos) {
-            //   if (tmp.find(infix[i]) == string::npos)
               postfix += infix[i];
               check = 1;
-              if ((infix[i] >= '0') && (infix[i] <= '9'))
+              if ((infix[i] >= '0') && (infix[i] <= '9') || (infix[i] == '.'))
               {
                   if (i != length)
                   {
-                      if ((infix[i + 1] < '0') || (infix[i + 1] > '9'))
+                      if ((infix[i + 1] < '0') || (infix[i + 1] > '9') || (infix[i+1] != '.'))
                           postfix += '>';
                   }
                   else
@@ -192,7 +191,6 @@ double TPostfix::Calculate(BaseTable& tab)
             case '+': val3 = val1 + val2; break;
             case '-': val3 = val1 - val2; break;
             case '*': val3 = val1 * val2; break;
-            case '/': val3 = val1 / val2; break; // в теории тут можно убрать /, но мы хитрожопые
             }
             res.push(val3);
         }
@@ -247,7 +245,6 @@ Polynom TPostfix::NewPoly(BaseTable& tab)
             case '+': val3 = val1 + val2; break;
             case '-': val3 = val1 + val2 * (-1); break;
             case '*': val3 = val1 * val2; break;
-            //case '/': val3 = val1 / val2; break; 
             }
             res.push(val3);
         }

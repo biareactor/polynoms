@@ -15,7 +15,6 @@ class TPostfix
   string infix;
   string postfix;
   string operands = "+-*/";
-  //int arity[4] = { 2,2,2,2 };
   int priority[4] = { 1,1,2,2 };
   bool isCorrect(string str);
 public:

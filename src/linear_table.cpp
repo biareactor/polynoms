@@ -2,7 +2,7 @@
 
 void LineTable::repacking()
 {
-	capacity += 1000;
+	capacity += STEP_SIZE;
 	Data* temp = new Data[capacity];
 	if (temp == nullptr)
 		throw 5;
@@ -33,7 +33,6 @@ void LineTable::Insert(const Data& d)
 	if (size == capacity)
 	{
 		repacking();
-		//add something
 	}
 	if (Find(d.key) == nullptr)
 	{

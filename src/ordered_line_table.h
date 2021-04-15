@@ -11,12 +11,13 @@ using namespace std;
 
 class ordered_line_table : public BaseTable
 {
-	Data* Tab[1000];
+  static const size_t SIZE = 1000;
+	Data* Tab[SIZE];
 	int size;
 public:
 	ordered_line_table() :BaseTable() 
 	{
-		for (int i = 0; i < 1000; i++)
+		for (int i = 0; i < SIZE; i++)
 			Tab[i] = nullptr;
 		size = 0;
 	}

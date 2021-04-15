@@ -3,7 +3,7 @@
 
 HashTabLin::~HashTabLin()
 {
-	for (int i = 0; i < 1000; i++)
+	for (int i = 0; i < SIZE; i++)
 		if (Tab[i] != nullptr)
 			delete Tab[i];
 }
@@ -14,12 +14,15 @@ Data* HashTabLin::Find(const std::string& key)
 
 	if (Tab[SearchHash] == nullptr)
 	{
-		for (int i = 0; i < 10; i++)
+    for (int i = 0; i < SIZE; i++)
 		{
-			SearchHash = (SearchHash + 7) % 1000;
-			if (Tab[SearchHash] != nullptr)
-				if (Tab[SearchHash]->key == key)
-					return Tab[SearchHash];
+			SearchHash = (SearchHash + STEP) % SIZE;
+      if (Tab[SearchHash] != nullptr)
+      {
+        if (Tab[SearchHash]->key == key)
+          return Tab[SearchHash];
+      }
+      else break;
 		}
 
 		return nullptr;
@@ -30,12 +33,15 @@ Data* HashTabLin::Find(const std::string& key)
 			return Tab[SearchHash];
 		else
 		{
-			for (int i = 0; i < 10; i++)
+			for (int i = 0; i < SIZE; i++)
 			{
-				SearchHash = (SearchHash + 7) % 1000;
-				if (Tab[SearchHash] != nullptr)
-					if (Tab[SearchHash]->key == key)
-						return Tab[SearchHash];
+				SearchHash = (SearchHash + STEP) % SIZE;
+        if (Tab[SearchHash] != nullptr)
+        {
+          if (Tab[SearchHash]->key == key)
+            return Tab[SearchHash];
+        }
+        else break;
 			}
 
 			return nullptr;
@@ -62,9 +68,9 @@ void HashTabLin::Insert(const Data& data)
 	{
 		if (Tab[InsertHash]->PolyString == data.PolyString)
 			throw 3;
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < SIZE; i++)
 		{
-			InsertHash = (InsertHash + 7) % 1000;
+			InsertHash = (InsertHash + STEP) % SIZE;
 
 			if (Tab[InsertHash] == nullptr)
 			{
@@ -96,7 +102,7 @@ void HashTabLin::Delete(const std::string& key)
 void HashTabLin::Print()
 {
 	std::cout << "\tPRINTING HASH TABLE" << std::endl;
-	for (int i = 0; i < 1000; i++)
+	for (int i = 0; i < SIZE; i++)
 		if (Tab[i] != nullptr)
 			std::cout << Tab[i]->key << ":\t" << Tab[i]->PolyString << std::endl;
 }

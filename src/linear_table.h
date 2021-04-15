@@ -10,11 +10,12 @@ class LineTable : public BaseTable
 	Data* dat;
 	int size;
 	int capacity;
+  static const size_t STEP_SIZE = 1000;
 	void repacking();
 public:
 	LineTable() : BaseTable()
 	{
-		capacity = 1000;
+		capacity = STEP_SIZE;
 		size = 0;
 		dat = new Data[capacity];
 	}
